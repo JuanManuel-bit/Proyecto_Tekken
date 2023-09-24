@@ -3,5 +3,5 @@
 #include <Jugador.hpp>
 int main()
 {
-    std::cout<<"El profe esta muy guapo"<< std::endl;
+    std::cout<<"Hola mundo"<< std::endl;
 }
