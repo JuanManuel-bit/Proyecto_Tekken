@@ -1,0 +1,57 @@
+@startuml Tekken
+class Jugador
+class Personajes{
+    + MoverDerecha()
+    + MoverIzquierda()
+    + Golpear()
+    + Patear()
+    + Saltar()
+    + agachar()
+    + UsarHabilidadEspecial()
+    + SerDerrotado()
+}
+ 
+class Enemigos
+class Escenario
+class BarraSalud{
+    + MostrarSalud_Restante()
+}
+
+class Temporizador{
+    + MostrarTiempoRestante()
+}
+
+class Puntajes{
+    + MotrarPuntajesDeJugadores()
+}
+
+class IAenemigos
+class EfectosVisuales
+class EfectosDEsonido
+class Menu{
+    + SeleccionarPersonajes()
+    + IniciarJuego()
+    + ConfigurarJuego()
+}
+
+class MensajesDeJuego{
+    + MostrarMensajeDeInicioDeRonda()
+    + MostrarMensajeDeVictoria()
+    + MostrarMensajeDeEmpate()
+}
+
+Enemigos -|> Personajes
+
+Jugador o-- Personajes
+Personajes *-- BarraSalud
+Enemigos *-- BarraSalud
+Enemigos *-- IAenemigos
+Escenario *-- Personajes
+Escenario *-- Enemigos
+Escenario *-- Temporizador
+Escenario *-- Puntajes
+Escenario *-- EfectosVisuales
+Escenario *-- EfectosDEsonido
+Escenario o-- MensajesDeJuego
+Menu o-- MensajesDeJuego
+@enduml
