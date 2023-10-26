@@ -12,6 +12,10 @@
 #include <Personajes.hpp>
 #include <Puntajes.hpp>
 #include <Temporizador.hpp>
+#include <curses.h>
+#include <unistd.h>
+#include <list>
+using namespace std;
 
 int main()
 {
