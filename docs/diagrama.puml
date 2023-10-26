@@ -27,7 +27,7 @@ class Puntajes{
 
 class IAenemigos
 class EfectosVisuales
-class EfectosDEsonido
+class EfectosDeSonido
 class Menu{
     + SeleccionarPersonajes()
     + IniciarJuego()
