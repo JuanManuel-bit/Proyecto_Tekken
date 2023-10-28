@@ -25,8 +25,7 @@ public:
         x += dx;
         y += dy;
     }
-
-    void atacar(Enemigo& enemigo);
+    
 };
 
 #endif

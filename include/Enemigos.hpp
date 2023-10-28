@@ -26,7 +26,6 @@ public:
         y += dy;
     }
 
-    void atacar(Jugador& jugador);
 };
 
 #endif
