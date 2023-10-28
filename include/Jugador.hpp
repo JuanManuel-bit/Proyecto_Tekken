@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+class Enemigo; // Declaración anticipada para permitir la referencia a la clase Enemigo
+
 class Jugador {
 private:
     std::string nombre;
@@ -23,6 +25,7 @@ public:
         x += dx;
         y += dy;
     }
+
     void atacar(Enemigo& enemigo);
 };
 
