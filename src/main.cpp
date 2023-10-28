@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <vector>
 #include <Jugador.hpp>
 #include <BarraSalud.hpp>
 #include <EfectosDeSonido.hpp>
@@ -17,29 +19,41 @@
 #include <list>
 using namespace std;
 
+
 int main() {
-    // Crear dos personajes
-    Jugador peleador1("Peleador 1");
-    Enemigo peleador2("Peleador 2");
+    const int altoPantalla = 25;
+    const int anchoPantalla = 80;
 
-    // Mostrar información inicial de los personajes
-    peleador1.mostrarInformacion();
-    peleador2.mostrarInformacion();
+    std::vector<std::string> pantalla(altoPantalla, std::string(anchoPantalla, ' ')); // Definir la variable pantalla
 
-    // Mover los personajes
-    peleador1.mover(3, 2);
-    peleador2.mover(1, 1);
+    Jugador peleador1("Peleador 1", "data/peleador1.txt");
+    Jugador peleador2("Peleador 2", "data/peleador2.txt");
 
-    // Mostrar la nueva posición de los personajes
-    peleador1.mostrarInformacion();
-    peleador2.mostrarInformacion();
+    while (true) {
+        // Limpiar la pantalla
+        system("clear"); // Funciona en sistemas Unix/Linux
+        pantalla.assign(altoPantalla, std::string(anchoPantalla, ' '));
 
-    // Peleador 1 lanza un ataque a Peleador 2
-    peleador1.atacar(peleador2);
+        // Mostrar a los personajes en su posición actual
+        peleador1.mostrarInformacion(pantalla);
+        peleador2.mostrarInformacion(pantalla);
 
-    // Mostrar el resultado del ataque
-    peleador1.mostrarInformacion();
-    peleador2.mostrarInformacion();
+        // Imprimir la pantalla
+        for (const std::string& fila : pantalla) {
+            std::cout << fila << '\n';
+        }
+
+        // Mover a los personajes
+        std::cout << "Mover a Peleador 1 (dx dy): ";
+        int dx1, dy1;
+        std::cin >> dx1 >> dy1;
+        peleador1.mover(dx1, dy1);
+
+        std::cout << "Mover a Peleador 2 (dx dy): ";
+        int dx2, dy2;
+        std::cin >> dx2 >> dy2;
+        peleador2.mover(dx2, dy2);
+    }
 
     return 0;
 }
