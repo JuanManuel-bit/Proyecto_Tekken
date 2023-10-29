@@ -20,39 +20,22 @@
 using namespace std;
 
 
+// main.cpp
+
+#include "Jugador.hpp"
+#include "Enemigos.hpp"
+
 int main() {
-    const int altoPantalla = 25;
-    const int anchoPantalla = 80;
+    Jugador jugador("data/peleador1.txt");
+    Enemigos enemigos("data/peleador2.txt");
 
-    std::vector<std::string> pantalla(altoPantalla, std::string(anchoPantalla, ' ')); // Definir la variable pantalla
-
-    Jugador peleador1("Peleador 1", "data/peleador1.txt");
-    Jugador peleador2("Peleador 2", "data/peleador2.txt");
+    // Implementa la lógica para inicializar y mostrar el juego en pantalla.
+    // Puedes usar bibliotecas como ncurses o SDL para la representación gráfica.
 
     while (true) {
-        // Limpiar la pantalla
-        system("clear"); // Funciona en sistemas Unix/Linux
-        pantalla.assign(altoPantalla, std::string(anchoPantalla, ' '));
-
-        // Mostrar a los personajes en su posición actual
-        peleador1.mostrarInformacion(pantalla);
-        peleador2.mostrarInformacion(pantalla);
-
-        // Imprimir la pantalla
-        for (const std::string& fila : pantalla) {
-            std::cout << fila << '\n';
-        }
-
-        // Mover a los personajes
-        std::cout << "Mover a Peleador 1 (dx dy): ";
-        int dx1, dy1;
-        std::cin >> dx1 >> dy1;
-        peleador1.mover(dx1, dy1);
-
-        std::cout << "Mover a Peleador 2 (dx dy): ";
-        int dx2, dy2;
-        std::cin >> dx2 >> dy2;
-        peleador2.mover(dx2, dy2);
+        // Captura la entrada del usuario para mover al jugador.
+        jugador.dibujar();
+        enemigos.dibujar();
     }
 
     return 0;

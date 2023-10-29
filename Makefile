@@ -1,10 +1,10 @@
-br:clean compilar ejecutar
+br: clean compilar ejecutar
 
-compilar:src/main.cpp
-	g++ src/main.cpp -o bin/main -I include
+compilar: src/main.cpp src/Jugador.cpp src/Enemigos.cpp
+    g++ src/main.cpp src/Jugador.cpp src/Enemigos.cpp -o bin/main -I include
 
-ejecutar:bin/main
-	./bin/main
+ejecutar: bin/main
+    ./bin/main
 
-clean:bin/main
-	rm bin/main
+clean: bin/main
+    rm bin/main
