@@ -1,10 +1,10 @@
-class Actualizable
+class Actulizable
 {
 private:
 
 public:
-     Actualizable() {}
-     ~Actualizable() {}
+     Actulizable() {}
+     ~Actulizable() {}
     virtual void Actualizar() = 0;
 
 };

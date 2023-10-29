@@ -1,52 +1,46 @@
-#pragma once
-
-#include <Dibujo.hpp>
-#include <Actualizable.hpp>
-#include <iostream>
-#include <fstream>
-#include <unistd.h>
 #include <curses.h>
-#include <ncurses.h>
-#include <string>
-#include <list>
-
-using namespace std;
+#include <iostream>
+#include <unistd.h>
 
 class Escenario
 {
 private:
+    int x;
+    int y;
+    bool ejecucion;
+    int velocidad;
+    int contador;
+
 public:
-    Escenario()
+    Escenario() 
     {
         initscr();
-        noecho();
-        curs_set(FALSE);
+        getmaxyx(stdscr,y,x); //screen-> src tamaño de la pantalla en x y y
+        this->ejecucion = false;
+        this->velocidad =10;
+        this->contador=20;
+        curs_set(false);
         cbreak();
-        keypad(stdscr, TRUE);
-        timeout(10);
-    }
-    void Actualizar(list<Actualizable *> Actualizables)
-    {
-        for (auto &&Actualizable : Actualizables)
-        {
-            Actualizable->Actualizar();
-        }
-        usleep(1000/24);
-    }
-    void Dibujar(list<Dibujo *> dibujos)
-    {
-        clear();
-        for (auto &&dibujo : dibujos)
-        {
-            dibujo->Dibujar();
-        }
-        box(stdscr, '=', '?');
-        refresh();
+        timeout(100);
+        noecho();
+        keypad(stdscr,TRUE);
     }
 
-    ~Escenario()
+    void Actualizar(){
+    this->contador = this->contador=1;
+    if (this->contador == 0)
     {
-        keypad(stdscr, FALSE);
-        endwin();
+        this->Cerrar();
+    }
+    
+    }
+    void Dibujar(){
+        box(stdscr,'E','L');
+    }
+    void Cerrar(){
+        this->ejecucion = false;
+    }
+    ~Escenario() {
+           endwin();
     }
 };

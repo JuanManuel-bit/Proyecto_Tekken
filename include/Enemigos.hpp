@@ -6,11 +6,13 @@
 
 #include <string>
 
-class Enemigos {
+class Enemigos
+{
 public:
-    Enemigos(const std::string& archivoDibujo);
+    Enemigos(const std::string &archivoDibujo);
     void mover();
     void dibujar() const;
+
 private:
     int x;
     int y;
@@ -18,4 +20,3 @@ private:
 };
 
 #endif
-

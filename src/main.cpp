@@ -2,11 +2,9 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <Jugador.hpp>
 #include <BarraSalud.hpp>
 #include <EfectosDeSonido.hpp>
 #include <EfectosVisuales.hpp>
-#include <Enemigos.hpp>
 #include <Escenario.hpp>
 #include <IAenemigos.hpp>
 #include <MensajesDeJuego.hpp>
@@ -14,28 +12,45 @@
 #include <Personajes.hpp>
 #include <Puntajes.hpp>
 #include <Temporizador.hpp>
+#include <Actualizable.hpp>
+#include <Dibujo.hpp>
 #include <curses.h>
 #include <unistd.h>
 #include <list>
 using namespace std;
-
 
 // main.cpp
 
 #include "Jugador.hpp"
 #include "Enemigos.hpp"
 
-int main() {
-    Jugador jugador("data/peleador1.txt");
-    Enemigos enemigos("data/peleador2.txt");
+int main(int argc, char const *argv[])
+{
 
-    // Implementa la lógica para inicializar y mostrar el juego en pantalla.
-    // Puedes usar bibliotecas como ncurses o SDL para la representación gráfica.
+    Escenario v;
+    Dibujo d1(1, 1, "peleador1");
+    Dibujo d2(1, 1, "peleador2");
+    
+    bool ejecucion = true;
+    while (ejecucion)
+    {
+        v.Actualizar();
+        if (getch() == 'q')
+        {
+            break;
+        }
+        if (getch() == 'a')
+        {
+            d1.Mover(5, 5);
+        }
 
-    while (true) {
-        // Captura la entrada del usuario para mover al jugador.
-        jugador.dibujar();
-        enemigos.dibujar();
+        clear();
+      
+        d2.Dibujar();
+        d1.Dibujar();
+
+        refresh();
+        usleep(41000);
     }
 
     return 0;
