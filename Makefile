@@ -1,10 +1,10 @@
-br: clean compilar ejecutar
+all: clean compilar
 
 compilar: src/main.cpp src/Jugador.cpp src/Enemigos.cpp
-	g++ src/main.cpp src/Jugador.cpp src/Enemigos.cpp -o bin/main -I include
+	g++ src/main.cpp src/Jugador.cpp src/Enemigos.cpp -o bin/main -I include -I /usr/include/SDL -lSDL2
+
+clean:
+	rm -f bin/main
 
 ejecutar: bin/main
 	./bin/main
-
-clean: bin/main
-	rm bin/main
